@@ -1,6 +1,6 @@
 const Membership = artifacts.require("./Membership.sol");
 
-contract("Membership", accounts => {
+contract("30 Day Membership", accounts => {
     before("get instance of contract", async () => {
         this.MembershipInstance = await Membership.deployed();
     });
@@ -20,5 +20,10 @@ contract("Membership", accounts => {
         const status = await this.MembershipInstance.status.call();
 
         assert.equal(status, false, "The contract was not initialized with a false status.");
-    })
+    });
+
+    it("should have an end date in 30 days", async () => {
+        const endDate = await this.MembershipInstance.endDate.call();
+        console.log(endDate);
+    });
 });

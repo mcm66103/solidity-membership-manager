@@ -6,13 +6,14 @@ contract Membership {
     uint public startDate;
     uint public endDate;
 
-    constructor() public {
+    constructor(uint _length) public {
         startDate = now;
+        endDate = startDate + _length * 1 days;
         status = false;
     }
 
     // Check that the end date has not passed.
-    modifier checkEndDate {        
+    modifier checkEndDate {
         require(now <= endDate);
         _;
     }
